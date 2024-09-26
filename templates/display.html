@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MIDI File Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>MIDI File Analysis</h1>
+    <p>File: {{ filename }}</p>
+    <p>Key Signature: {{ key_signature }}</p>
+    <p>Tempo: {{ tempo_indication.text }} (Quarter = {{ tempo_indication.number }})</p>
+    <p>Time Signature: {{ time_signature.ratioString }}</p>
+
+    <h2>Instruments Used</h2>
+    <ul>
+        {% for instrument in instruments %}
+            <li>{{ instrument }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Motifs and Themes</h2>
+    <ul>
+        {% for sequence in note_sequences %}
+            <li>{{ sequence|join(', ') }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Harmonic Structures</h2>
+    <ul>
+        {% for chord in harmonic_analysis %}
+            <li>{{ chord }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/" class="back-link">Back to Home</a>
+</body>
+</html>
